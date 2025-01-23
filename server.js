@@ -23,7 +23,7 @@ app.use(session({
 
 // CORS configuration
 app.use(cors({
-  origin: 'http://localhost:5173',  // React app's origin
+  origin: '*',  // React app's origin
   credentials: true,  
 }));
 
