@@ -22,12 +22,13 @@ app.use(session({
 }));
 
 // CORS configuration
-app.use(cors({
-  origin: '*',  // React app's origin
-  credentials: true,  
-}));
-
-
+app.use(
+  cors({
+    origin: "*",
+    method: ["GET", "POST", "DELETE", "PUT"],
+    credentials: true,
+  })
+);
 app.use(express.json());
 const port=5000;
 
