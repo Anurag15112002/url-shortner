@@ -13,7 +13,7 @@ async function generatenewUrl(req,res){
         redirectURL:body.url,
         visitHistory:[]
       });
-      const fullShortUrl = `http://localhost:5000/url/${shortID}`; // Make sure to replace with your actual domain
+      const fullShortUrl = `${process.env.BASE_URL}/url/${shortID}`; 
       return res.json({ shortUrl: fullShortUrl });
 }
 async function getUrlById(req,res){

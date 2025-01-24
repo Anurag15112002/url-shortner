@@ -5,9 +5,12 @@ const {connectDB}=require("./connection/dbconnect");
 const cookieParser=require("cookie-parser");
 const urlRouter=require("./routes/url")
 const userRouter=require("./routes/user");
+const { config } =require("dotenv");
 
 const app=express();
 //middleware
+config({ path: ".env" });
+
 app.use(cookieParser());
 app.use(session({
   secret: 'your-secret-key', // Ensure a secret key is set
@@ -24,7 +27,7 @@ app.use(session({
 // CORS configuration
 app.use(
   cors({
-    origin: "*",
+    origin:process.env.FRONTEND_URL,
     method: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
@@ -35,7 +38,7 @@ const port=5000;
 app.use("/url",urlRouter);
 app.use("/user",userRouter);
 
-connectDB("mongodb://127.0.0.1:27017/shortner-database")
+connectDB(process.env.MONGO_URI)
 
 app.listen(port,()=>{
     console.log(`server is running at ${port}`)
